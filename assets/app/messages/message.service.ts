@@ -22,7 +22,7 @@ export class MessageService {
         const token = localStorage.getItem('token') 
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.post('https://heroku-node-angular.herokuapp.com/message' + token, body, {headers: headers})
+        return this.http.post('http://awsnodeangular-env.rpiughqmuv.us-east-1.elasticbeanstalk.com/message' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const message = new Message(
@@ -40,7 +40,7 @@ export class MessageService {
     }
 
     getMessages() {        
-        return this.http.get('https://heroku-node-angular.herokuapp.com/message')
+        return this.http.get('http://awsnodeangular-env.rpiughqmuv.us-east-1.elasticbeanstalk.com/message')
             .map((response: Response) => {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
@@ -72,7 +72,7 @@ export class MessageService {
         const token = localStorage.getItem('token') 
         ? '?token=' + localStorage.getItem('token')
         : '';
-        return this.http.patch('https://heroku-node-angular.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+        return this.http.patch('http://192.168.0.85/meanapp001/message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -85,7 +85,7 @@ export class MessageService {
         const token = localStorage.getItem('token') 
         ? '?token=' + localStorage.getItem('token')
         : '';
-        return this.http.delete('https://heroku-node-angular.herokuapp.com/message/' + message.messageId + token)
+        return this.http.delete('http://192.168.0.85/meanapp001/message/' + message.messageId + token)
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
